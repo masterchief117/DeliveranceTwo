@@ -12,7 +12,7 @@ public class MongoDao {
 
 	private MongoClient mongoClient;
 
-	protected MongoDao() throws UnknownHostException {
+	public MongoDao() throws UnknownHostException {
 		setMongoClient(new MongoClient(new ServerAddress(MONGO_DB_SERVER_NAME,
 				MONGO_DB_SERVER_PORT)));
 	}
