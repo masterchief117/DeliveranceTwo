@@ -1,4 +1,4 @@
-package dao;
+package oracle.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import oracle.jdbc.OracleDriver;
 
 
-public class Dao {
+public class OracleDao {
 
 	private static final String URL_TO_ORACLE_DB = "jdbc:oracle:thin:@192.168.0.44:1521:MongoDemo";
 	private static final String OE_USERNAME = "oe";
@@ -19,7 +19,7 @@ public class Dao {
 	private PreparedStatement preparedStatement;
 	private ResultSet resultSet;
 
-	protected Dao() throws SQLException {
+	protected OracleDao() throws SQLException {
 		DriverManager.registerDriver(new OracleDriver());
 		connection = DriverManager.getConnection(URL_TO_ORACLE_DB, OE_USERNAME,
 				OE_PASSWORD);

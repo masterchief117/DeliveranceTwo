@@ -1,4 +1,4 @@
-package dao;
+package oracle.dao;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -14,7 +14,7 @@ public class CustomerDao {
 
 	private static final String EMPTY_PARAMETERS = "()";
 
-	private Dao dao;
+	private OracleDao oracleDao;
 
 	public CustomerDao() {
 		// TODO Auto-generated constructor stub
@@ -22,16 +22,16 @@ public class CustomerDao {
 
 	public List<CustomerOrder> getSelectedCustomerOrderHistory(int[] ids,
 			String questionMarks) throws SQLException {
-		dao = new Dao();
+		oracleDao = new OracleDao();
 		String preparedQuery = SELECT_CUSTOMER_BY_ID.replace(EMPTY_PARAMETERS,
 				"(" + questionMarks + ")");
-		dao.setPreparedStatement(dao.getConnection().prepareStatement(
+		oracleDao.setPreparedStatement(oracleDao.getConnection().prepareStatement(
 				preparedQuery));
 		for (int index = 1; index <= ids.length; index++) {
-			dao.getPreparedStatement().setInt(index, ids[index - 1]);
+			oracleDao.getPreparedStatement().setInt(index, ids[index - 1]);
 		}
-		dao.setResultSet(dao.getPreparedStatement().executeQuery());
+		oracleDao.setResultSet(oracleDao.getPreparedStatement().executeQuery());
 		
-		return SQLCustomerConverter.getCustomerOrders(dao.getResultSet());
+		return SQLCustomerConverter.getCustomerOrders(oracleDao.getResultSet());
 	}
 }

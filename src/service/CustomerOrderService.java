@@ -3,10 +3,11 @@ package service;
 import java.sql.SQLException;
 import java.util.List;
 
+import oracle.dao.CustomerDao;
+
 import model.CustomerAveragePurchases;
 import model.CustomerOrder;
 
-import dao.CustomerDao;
 
 public class CustomerOrderService {
 
