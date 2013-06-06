@@ -54,6 +54,7 @@ public class CollectMeanMedian {
 		} else {
 			ids = DEFAULT_IDS;
 		}
+		// runs the programs.
 		customerService.getAverages(ids);
 	}
 }

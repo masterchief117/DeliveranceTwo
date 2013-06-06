@@ -45,15 +45,5 @@
 			<artifactId>ojdbc6</artifactId>
 			<version>11.2.0.3-INTERNAL</version>
 		</dependency>
-		<dependency>
-			<groupId>joda-time</groupId>
-			<artifactId>joda-time</artifactId>
-			<version>2.2</version>
-		</dependency>
-		<dependency>
-			<groupId>net.vz.mongodb.jackson</groupId>
-			<artifactId>mongo-jackson-mapper</artifactId>
-			<version>1.4.2</version>
-		</dependency>
 	</dependencies>
 </project>

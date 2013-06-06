@@ -1,29 +1,40 @@
 package model;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
 
 public class CustomerPurchases {
 
-	private Timestamp timeOfSale;
+	private long timeOfSale;
 	private BigDecimal totalCostOfPurchase;
 
-	public Timestamp getTimeOfSale() {
-		return timeOfSale;
-	}
-
-	public void setTimeOfSale(Timestamp timeOfSale) {
-		this.timeOfSale = timeOfSale;
-
-	}
-
+	/**
+	 * @return the totalCostOfPurchase
+	 */
 	public BigDecimal getTotalCostOfPurchase() {
 		return totalCostOfPurchase;
 	}
 
+	/**
+	 * @param totalCostOfPurchase
+	 *            the totalCostOfPurchase to set
+	 */
 	public void setTotalCostOfPurchase(BigDecimal totalCostOfPurchase) {
 		this.totalCostOfPurchase = totalCostOfPurchase;
+	}
 
+	/**
+	 * @return the timeOfSale
+	 */
+	public long getTimeOfSale() {
+		return timeOfSale;
+	}
+
+	/**
+	 * @param timeOfSale
+	 *            the timeOfSale to set
+	 */
+	public void setTimeOfSale(long timeOfSale) {
+		this.timeOfSale = timeOfSale;
 	}
 
 }

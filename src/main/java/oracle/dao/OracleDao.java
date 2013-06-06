@@ -8,7 +8,6 @@ import java.sql.SQLException;
 
 import oracle.jdbc.OracleDriver;
 
-
 public class OracleDao {
 
 	private static final String URL_TO_ORACLE_DB = "jdbc:oracle:thin:@192.168.0.44:1521:MongoDemo";
@@ -19,6 +18,11 @@ public class OracleDao {
 	private PreparedStatement preparedStatement;
 	private ResultSet resultSet;
 
+	/**
+	 * Protected to limit access to this package.
+	 * 
+	 * @throws SQLException
+	 */
 	protected OracleDao() throws SQLException {
 		DriverManager.registerDriver(new OracleDriver());
 		connection = DriverManager.getConnection(URL_TO_ORACLE_DB, OE_USERNAME,
