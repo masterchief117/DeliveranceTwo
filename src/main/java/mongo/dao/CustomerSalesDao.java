@@ -80,6 +80,8 @@ public class CustomerSalesDao {
 		MapReduceCommand mapReduce = new MapReduceCommand(col, MongoDao.MAP,
 				MongoDao.REDUCE, "a_test", MapReduceCommand.OutputType.MERGE,
 				QueryBuilder.start().put("customerId").in(customerIds).get());
+		
+		System.out.print(mapReduce.getMap());
 		// executes teh mapReduce from above.
 		col.mapReduce(mapReduce);
 
