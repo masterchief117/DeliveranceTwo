@@ -25,13 +25,13 @@ public class CustomerDao {
 		oracleDao = new OracleDao();
 		String preparedQuery = SELECT_CUSTOMER_BY_ID.replace(EMPTY_PARAMETERS,
 				"(" + questionMarks + ")");
-		oracleDao.setPreparedStatement(oracleDao.getConnection().prepareStatement(
-				preparedQuery));
+		oracleDao.setPreparedStatement(oracleDao.getConnection()
+				.prepareStatement(preparedQuery));
 		for (int index = 1; index <= ids.length; index++) {
 			oracleDao.getPreparedStatement().setInt(index, ids[index - 1]);
 		}
 		oracleDao.setResultSet(oracleDao.getPreparedStatement().executeQuery());
-		
+
 		return SQLCustomerConverter.getCustomerOrders(oracleDao.getResultSet());
 	}
 }

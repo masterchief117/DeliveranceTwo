@@ -1,13 +1,21 @@
 package service;
 
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.net.UnknownHostException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+
+import org.joda.time.DateTime;
 
 import oracle.dao.CustomerDao;
 
 import model.CustomerAveragePurchases;
 import model.CustomerOrder;
-
+import model.CustomerSalesProfile;
+import model.Order;
+import mongo.dao.CustomerSalesDao;
 
 public class CustomerOrderService {
 
@@ -31,12 +39,14 @@ public class CustomerOrderService {
 
 	/**
 	 * Locate the averages (for all the specified Ids
+	 * 
 	 * @param ids
 	 * @return
 	 * @throws SQLException
+	 * @throws IOException
 	 */
-	public String getAverages(int[] ids) throws SQLException {
-		
+	public String getAverages(int[] ids) throws SQLException, IOException {
+
 		String questionMarks = "";
 		for (int number = 0; number < ids.length; number++) {
 			questionMarks += "?, ";
@@ -49,7 +59,7 @@ public class CustomerOrderService {
 	}
 
 	private String stringRepresentationOfMeanMedian(
-			List<CustomerOrder> customerOrders) {
+			List<CustomerOrder> customerOrders) throws IOException {
 		List<CustomerAveragePurchases> averagePurchases = getAveragesForMeanAndMedian(customerOrders);
 
 		StringBuilder sb = new StringBuilder();
@@ -74,7 +84,7 @@ public class CustomerOrderService {
 	}
 
 	private List<CustomerAveragePurchases> getAveragesForMeanAndMedian(
-			List<CustomerOrder> customerOrders) {
+			List<CustomerOrder> customerOrders) throws IOException {
 		yearAndDayOfYearService = YearAndDayOfYearService.getInstance();
 		customerAveragePurchasesService = CustomerAveragePurchasesService
 				.getInstance();
@@ -83,7 +93,28 @@ public class CustomerOrderService {
 		customerAveragePurchasesService.sortPurchaseHistory(purchaseHistory);
 		customerAveragePurchasesService
 				.setTimeBetweenPurchases(purchaseHistory);
-
+		// TODO
+		CustomerSalesProfile customerProfile;
+		List<CustomerSalesProfile> list = new ArrayList<CustomerSalesProfile>();
+		Order order;
+		for (CustomerAveragePurchases purchase : purchaseHistory) {
+			customerProfile = new CustomerSalesProfile();
+			customerProfile.setCustomerId(purchase.getCustomer()
+					.getCustomerId());
+			customerProfile.setOrder(new ArrayList<Order>());
+			for (DateTime time : purchase.getDateTimeOfPurchase()) {
+				if (customerProfile.getOrder() == null) {
+					customerProfile.setOrder(new ArrayList<Order>());
+				}
+				order = new Order();
+				order.setTimeOfSale(time);
+				order.setCost(new BigDecimal(Math.random() * 2050));
+				customerProfile.getOrder().add(order);
+			}
+			list.add(customerProfile);
+		}
+		CustomerSalesDao sales = new CustomerSalesDao();
+		sales.editCustomersSaleProfile(list);
 		return purchaseHistory;
 	}
 }

@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 import service.CustomerOrderService;
@@ -30,8 +31,10 @@ public class CollectMeanMedian {
 	 * 
 	 * @param listOfIds
 	 * @throws SQLException
+	 * @throws IOException
 	 */
-	public static void main(String[] listOfIds) throws SQLException {
+	public static void main(String[] listOfIds) throws SQLException,
+			IOException {
 		CustomerOrderService customerService = CustomerOrderService
 				.getInstance();
 		int[] ids;

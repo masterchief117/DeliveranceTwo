@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 
+import org.joda.time.DateTime;
+
 import model.CustomerAveragePurchases;
 import model.CustomerOrder;
 import model.YearAndDayOfYear;
@@ -38,6 +40,10 @@ public class CustomerAveragePurchasesService {
 			List<YearAndDayOfYear> cust = customerOrderTree.get(
 					customerOrder.getCustomer().getCustomerId())
 					.getYearAndDayOfYear();
+			List<DateTime> timeOfYeah = customerOrderTree.get(
+					customerOrder.getCustomer().getCustomerId())
+					.getDateTimeOfPurchase();
+			timeOfYeah.add(customerOrder.getOrderDate());
 			cust.add(new YearAndDayOfYear(customerOrder.getOrderDate()
 					.getYear(), customerOrder.getOrderDate().getDayOfYear()));
 		}

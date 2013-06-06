@@ -3,11 +3,14 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.joda.time.DateTime;
+
 public class CustomerAveragePurchases {
 
 	private Customer customer;
 	private List<YearAndDayOfYear> yearAndDayOfYear;
 	private List<Integer> timeBetweenPurchases;
+	private List<DateTime> dateTimeOfPurchase;
 
 	public CustomerAveragePurchases() {
 	}
@@ -19,6 +22,7 @@ public class CustomerAveragePurchases {
 	public CustomerAveragePurchases(Customer customer) {
 		this.customer = customer;
 		this.yearAndDayOfYear = new ArrayList<YearAndDayOfYear>();
+		this.dateTimeOfPurchase = new ArrayList<DateTime>();
 	}
 
 	/**
@@ -64,6 +68,21 @@ public class CustomerAveragePurchases {
 	 */
 	public void setTimeBetweenPurchases(List<Integer> timeBetweenPurchases) {
 		this.timeBetweenPurchases = timeBetweenPurchases;
+	}
+
+	/**
+	 * @return the dateTimeOfPurchase
+	 */
+	public List<DateTime> getDateTimeOfPurchase() {
+		return dateTimeOfPurchase;
+	}
+
+	/**
+	 * @param dateTimeOfPurchase
+	 *            the dateTimeOfPurchase to set
+	 */
+	public void setDateTimeOfPurchase(List<DateTime> dateTimeOfPurchase) {
+		this.dateTimeOfPurchase = dateTimeOfPurchase;
 	}
 
 }
