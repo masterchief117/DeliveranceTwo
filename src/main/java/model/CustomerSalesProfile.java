@@ -1,13 +1,15 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerSalesProfile {
 
 	private int customerId;
-	private List<Order> order;
+	private List<CustomerPurchases> orders;
 
 	public CustomerSalesProfile() {
+		orders = new ArrayList<>();
 	}
 
 	/**
@@ -28,15 +30,16 @@ public class CustomerSalesProfile {
 	/**
 	 * @return the order
 	 */
-	public List<Order> getOrder() {
-		return order;
+	public List<CustomerPurchases> getOrders() {
+		return orders;
 	}
 
 	/**
-	 * @param order the order to set
+	 * @param order
+	 *            the order to set
 	 */
-	public void setOrder(List<Order> order) {
-		this.order = order;
+	public void setOrders(List<CustomerPurchases> orders) {
+		this.orders = orders;
 	}
 
 }

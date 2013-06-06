@@ -2,12 +2,11 @@ package mongo.dao;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import model.CustomerSalesProfile;
-import model.Order;
+import model.CustomerPurchases;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
@@ -18,7 +17,7 @@ public class CustomerSalesDao {
 	private MongoDao mongoDao;
 	private String DATABASE = "Stachers_Customer_Sales";
 
-	public void editCustomersSaleProfile(
+	public void pushCustomersSaleProfile(
 			List<CustomerSalesProfile> customerSalesProfiles)
 			throws IOException {
 		// TODO add comments!
@@ -33,19 +32,18 @@ public class CustomerSalesDao {
 			BasicDBObject dateCost = new BasicDBObject();
 			List<BasicDBObject> list = new ArrayList<>();
 
-			for (Order order : customerSalesProfile.getOrder()) {
-				list.add(new BasicDBObject().append(
-						"Cost",
-						(((int) (100 * Double.parseDouble(order.getCost()
-								.toString()))) / 100.0D)).append("Date",
-						new Timestamp(order.getTimeOfSale().getMillis())));
+			for (CustomerPurchases order : customerSalesProfile.getOrders()) {
+				list.add(new BasicDBObject()
+						.append("Cost",
+								(((int) (100 * Double.parseDouble(order
+										.getTotalCostOfPurchase().toString()))) / 100.0D))
+						.append("Date", order.getTimeOfSale()));
 			}
 			dateCost.put("$push", new BasicDBObject("DateCost",
 					new BasicDBObject().append("$each", list)));
-			// ob.put("CustomerId", customerSalesProfile.getCustomerId());
 
 			col.update(locateCustomer, dateCost, true, false);
-
+			
 		}
 	}
 

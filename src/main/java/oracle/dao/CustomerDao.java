@@ -5,7 +5,7 @@ import java.util.List;
 
 import sql.converter.SQLCustomerConverter;
 
-import model.CustomerOrder;
+import model.CustomerSalesProfile;
 
 public class CustomerDao {
 
@@ -20,8 +20,8 @@ public class CustomerDao {
 		// TODO Auto-generated constructor stub
 	}
 
-	public List<CustomerOrder> getSelectedCustomerOrderHistory(int[] ids,
-			String questionMarks) throws SQLException {
+	public List<CustomerSalesProfile> getSelectedCustomerOrderHistory(
+			int[] ids, String questionMarks) throws SQLException {
 		oracleDao = new OracleDao();
 		String preparedQuery = SELECT_CUSTOMER_BY_ID.replace(EMPTY_PARAMETERS,
 				"(" + questionMarks + ")");
