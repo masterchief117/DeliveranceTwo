@@ -33,9 +33,9 @@ db.sales.aggregate(
 	// for each element... in this case it is dateCost.date
 	// we are measuring against
 	{'dateCost.date' : 
-	// $gte (greater-than-or-equal)
-	// $lte (less-than-or-equal)
-	// firstTime and lastTime will need to be a long value (millis)
-	{$gte : firstTime, $lte : lastTime}
+		// $gte (greater-than-or-equal)
+		// $lte (less-than-or-equal)
+		// firstTime and lastTime will need to be a long value (millis)
+		{$gte : firstTime, $lte : lastTime}
 	}
 }])
