@@ -26,7 +26,9 @@
 // call the aggregate function
 db.sales.aggregate(
 [
-// unwind will split off all the subdocuments. Don't forget the $
+// unwind will split off all the subdocuments.
+// the variable to unwind on must be in a string and
+// start with $
 {$unwind : '$dateCost'} , 
 // match asks "Does this match the boolean", if so, returns!
 {$match : 
