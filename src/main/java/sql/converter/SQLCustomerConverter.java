@@ -70,7 +70,6 @@ public class SQLCustomerConverter {
 			// if the customer did not exist, make a new one!
 			if (!containsCustomer) {
 				// and insert the data on the new customer! Ya! new sale.
-
 				customerSalesProfile = new CustomerSalesProfile();
 				customerSalesProfile.setCustomerId(customerId);
 				customerSalesProfile.getOrders().add(customerPurchases);

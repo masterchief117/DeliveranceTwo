@@ -59,7 +59,7 @@ public class CustomerSalesDao {
 			}
 			// read this as {$push : { dateCost : {$each : [{value1, value2},
 			// {value1, value2}, {value1, value2}, {value1, value2}] } } }
-			dateCost.put("$push", new BasicDBObject("dateCost",
+			dateCost.append("$push", new BasicDBObject("dateCost",
 					new BasicDBObject().append("$each", list)));
 			// read this as {costumerId : theId, dateCost :[{date1, cost1},
 			// {date2, cost2}, {date3, cost3}, {date4, cost4}]}
@@ -80,7 +80,7 @@ public class CustomerSalesDao {
 		MapReduceCommand mapReduce = new MapReduceCommand(col, MongoDao.MAP,
 				MongoDao.REDUCE, "a_test", MapReduceCommand.OutputType.MERGE,
 				QueryBuilder.start().put("customerId").in(customerIds).get());
-		
+
 		System.out.print(mapReduce.getMap());
 		// executes teh mapReduce from above.
 		col.mapReduce(mapReduce);
