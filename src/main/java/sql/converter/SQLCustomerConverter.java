@@ -26,7 +26,7 @@ public class SQLCustomerConverter {
 	/**
 	 * Gets the customer orders from the DB, used as a "RowMapper". For now, we
 	 * do not have cost associated with the user, so it is created randomly,
-	 * with a maximum of one thousand and mininum of zero
+	 * with a maximum of one thousand and minimum of zero
 	 * 
 	 * @param customerOrderResults
 	 * @return

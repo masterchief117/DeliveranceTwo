@@ -49,7 +49,7 @@ public class CustomerOrderService {
 	 * @throws SQLException
 	 * @throws IOException
 	 */
-	public void getAverages(int[] ids) throws SQLException, IOException {
+	public void setAverages(int[] ids) throws SQLException, IOException {
 
 		// for the preparedStatement, needs those question marks!
 		String questionMarks = "";

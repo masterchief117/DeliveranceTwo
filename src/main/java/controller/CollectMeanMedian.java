@@ -38,7 +38,7 @@ public class CollectMeanMedian {
 		CustomerOrderService customerService = CustomerOrderService
 				.getInstance();
 		int[] ids;
-		// if there are submitted from the console, push them into ids!
+		// if there are some args submitted from the console, push them into ids!
 		if (listOfIds.length > 0) {
 			ids = new int[listOfIds.length];
 			for (int index = 0; index < listOfIds.length; index++) {
@@ -55,6 +55,6 @@ public class CollectMeanMedian {
 			ids = DEFAULT_IDS;
 		}
 		// runs the programs.
-		customerService.getAverages(ids);
+		customerService.setAverages(ids);
 	}
 }

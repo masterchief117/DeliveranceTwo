@@ -64,7 +64,7 @@ public class CustomerSalesDao {
 			// read this as {costumerId : theId, dateCost :[{date1, cost1},
 			// {date2, cost2}, {date3, cost3}, {date4, cost4}]}
 			// the first boolean is for upsert (update, if not present, insert)
-			col.update(locateCustomer, dateCost, true, false);
+			col.update(locateCustomer, dateCost, true, true);
 
 		}
 
@@ -81,7 +81,6 @@ public class CustomerSalesDao {
 				MongoDao.REDUCE, "a_test", MapReduceCommand.OutputType.MERGE,
 				QueryBuilder.start().put("customerId").in(customerIds).get());
 
-		System.out.print(mapReduce.getMap());
 		// executes teh mapReduce from above.
 		col.mapReduce(mapReduce);
 

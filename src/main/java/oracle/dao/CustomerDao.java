@@ -8,10 +8,10 @@ import sql.converter.SQLCustomerConverter;
 import model.CustomerSalesProfile;
 
 public class CustomerDao {
-
+	// SQL statement provided by Dale
 	private static final String SELECT_CUSTOMER_BY_ID = "select customer_id, order_date from orders"
 			+ " where customer_id IN ()" + " order by customer_id, order_date";
-
+	// needed to place the question marks properly
 	private static final String EMPTY_PARAMETERS = "()";
 
 	private OracleDao oracleDao;
